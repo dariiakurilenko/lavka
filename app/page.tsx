@@ -31,21 +31,21 @@ export default function Home() {
                   items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 2,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
                     items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 3,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
                     items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 4,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
@@ -58,28 +58,28 @@ export default function Home() {
                 categoryId={2}
                 items={[
                   {
-                  id: 1,
+                  id: 5,
                   name: 'Оливье',
                   imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                   price: 178,
                   items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 6,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
                     items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 7,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
                     items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 8,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
@@ -92,28 +92,28 @@ export default function Home() {
                 categoryId={3}
                 items={[
                   {
-                  id: 1,
+                  id: 9,
                   name: 'Оливье',
                   imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                   price: 178,
                   items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 10,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
                     items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 11,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
                     items: [{price: 178}]
                   },
                   {
-                    id: 1,
+                    id: 12,
                     name: 'Оливье',
                     imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
                     price: 178,
