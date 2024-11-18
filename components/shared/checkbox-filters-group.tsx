@@ -1,18 +1,21 @@
 'use client'
 import React from "react";
 import { FilterCheckbox, FilterCheckboxProps } from "./filter-checkbox";
-import { Input } from "../ui";
+import { Input, Skeleton } from "../ui";
 
 type Item = FilterCheckboxProps;
 interface Props {
     title: string;
     items: Item[]; //сами чекбоксы
-    defaultItems: Item[]; //айтемсы по умолчанию
+    defaultItems?: Item[]; //айтемсы по умолчанию
     limit?: number;
+    loading?: boolean,
     searchInputPlaceholder?: string;
-    onChange?: (values: string[]) => void;
+    onClickCheckbox?: (id: string) => void;
     defaultValue?: string[];
+    selected?: Set<string>; 
     className?: string;
+    name?: string;
 }
 
 export const CheckboxFiltersGroup: React.FC<Props> = (
@@ -23,16 +26,30 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
     limit = 5,
     searchInputPlaceholder = 'Поиск...',
     className,
-    onChange,
+    loading,
+    onClickCheckbox,
     defaultValue,
+    selected,
+    name
     }
 ) => {
     const [showAll, setShowAll] = React.useState(false);
     const [searchValue, setSearchValue] = React.useState('');
     const onSetSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.target.value);
+    };
+
+    if (loading){
+        return <div className={className}>
+            <p className="font-bold mb-3">{title}</p>
+            {
+                ...Array(limit-1).fill(0).map((_, index) => (
+                    <Skeleton key={index} className="h-6 mb-4 rounded-[8px]" />
+                ))
+            }
+        </div>
     }
-    const list = showAll? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLowerCase())) : defaultItems.slice(0, limit);
+    const list = showAll? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLowerCase())) :(defaultItems || items).slice(0, limit);
     return (
         <div className={className}>
             <p className="font-bold mb-3">{title}</p>
@@ -50,8 +67,9 @@ export const CheckboxFiltersGroup: React.FC<Props> = (
                         text={item.text}
                         value={item.value}
                         endAdornment={item.endAdornment}
-                        checked={false}
-                        onCheckedChange={(ids) => console.log(ids)}
+                        checked={selected?.has(item.value)}
+                        onCheckedChange={() => onClickCheckbox?.(item.value)}
+                        name={name}
                         />
 
                 ))}
