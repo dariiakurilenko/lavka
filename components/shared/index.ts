@@ -8,4 +8,6 @@ export {Filters} from './filters';
 export {FilterCheckbox} from './filter-checkbox';
 export {ProductCard} from './productCard';
 export {SearchInput} from './search-input';
-export {ProductImage} from './product-image'
+export {ProductImage} from './product-image';
+export {ChooseProductModal} from './choose-product-modal';
+export {ChooseProductForm} from './choose-product-form';
