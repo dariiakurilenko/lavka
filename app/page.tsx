@@ -1,15 +1,28 @@
-import { Categories, Container, Filters, ProductCard, SortPopup, Title, TopBar } from "@/components/shared";
+import { Container, Filters, Title, TopBar } from "@/components/shared";
 import { ProductsGroupList } from "@/components/shared/products-group-list";
-import { Button } from "@/components/ui/button";
+import { prisma } from "@/prisma/prisma-client";
 
 
-export default function Home() {
+
+export default async function Home() {
+  const categories = await prisma.category.findMany({
+    include: {
+      product: {
+        include: {
+          ingredients: true,
+          items: true,
+        }
+      }
+    }
+  });
+  console.log(categories[0].product[0].items[0].price);
+  
   return (
     <>
       <Container className="mt-10">
         <Title text="Все салаты" size="lg" className="font-extrabold"/>
       </Container>
-      <TopBar />
+      <TopBar categories={categories.filter((category) => category.product.length > 0)}/>
       <Container className="mt-10 pb-14">
         <div className="flex gap-[80px]">
           {/*фильтрация*/}
@@ -19,108 +32,18 @@ export default function Home() {
           {/*Список товаров*/}
           <div className="flex-1">
             <div className="flex flex-col gap-16">
-              <ProductsGroupList 
-                title="Салаты"
-                categoryId={1}
-                items={[
-                  {
-                  id: 1,
-                  name: 'Оливье',
-                  imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                  price: 178,
-                  items: [{price: 178}]
-                  },
-                  {
-                    id: 2,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-                  {
-                    id: 3,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-                  {
-                    id: 4,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-              ]}
-              />
-              <ProductsGroupList 
-                title="Закуски"
-                categoryId={2}
-                items={[
-                  {
-                  id: 5,
-                  name: 'Оливье',
-                  imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                  price: 178,
-                  items: [{price: 178}]
-                  },
-                  {
-                    id: 6,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-                  {
-                    id: 7,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-                  {
-                    id: 8,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-              ]}
-              />
-              <ProductsGroupList 
-                title="Десерты"
-                categoryId={3}
-                items={[
-                  {
-                  id: 9,
-                  name: 'Оливье',
-                  imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                  price: 178,
-                  items: [{price: 178}]
-                  },
-                  {
-                    id: 10,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-                  {
-                    id: 11,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-                  {
-                    id: 12,
-                    name: 'Оливье',
-                    imageUrl: 'https://yastatic.net/avatars/get-grocery-goods/2791769/b277d5b7-dbf9-4a51-b80d-bbd465262160/928x928-webp',
-                    price: 178,
-                    items: [{price: 178}]
-                  },
-              ]}
-              />
+              {
+                categories.map((category) => (
+                  category.product.length > 0 &&  (
+                    <ProductsGroupList
+                      key={category.id}
+                      title={category.name}
+                      categoryId={category.id}
+                      items={category.product}
+                      />
+                  )
+                ))
+              }
             </div>
           </div>
         </div>

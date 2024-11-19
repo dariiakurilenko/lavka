@@ -148,7 +148,7 @@ async function up(){
                 price: 199
             },
             {
-                productId: 1,
+                productId: 9,
                 price: 199
             },
         ]
