@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { ProductImage } from "./product-image";
 import { Title } from "./title";
 import { Button } from "../ui";
 
@@ -8,16 +7,12 @@ interface Props {
     className?: string;
     imageUrl: string;
     name: string;
-    ingredients: any[];
-    items?: any[];
     onClickAdd?: VoidFunction;
 }
 
 export const ChooseProductForm: React.FC<Props> = ({ 
     name,
-    items,
     imageUrl,
-    ingredients,
     onClickAdd,
     className 
 }) => {

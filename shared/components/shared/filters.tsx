@@ -5,7 +5,7 @@ import { Input } from "../ui";
 import { RangeSlider } from "./range-slider";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
 import { useRouter} from "next/navigation";
-import { useQueryFilters, useIngredients, useFilters } from "@/hooks";
+import { useQueryFilters, useIngredients, useFilters } from "@/shared/hooks";
 
 
 interface Props {

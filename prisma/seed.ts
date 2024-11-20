@@ -90,6 +90,11 @@ async function up(){
                 price: 399,
                 size: 600,
             },
+            {
+                productId: salad1.id,
+                price: 499,
+                size: 1000,
+            },
             //оливье
             {
                 productId: salad2.id,
@@ -104,13 +109,33 @@ async function up(){
             {
                 productId: salad2.id,
                 price: 499,
+                size: 600,
+            },
+            {
+                productId: salad2.id,
+                price: 599,
                 size: 1000,
             },
             //Салат с тунцом
             {
                 productId: salad3.id,
                 price: 359,
-                size: 300,
+                size: 200,
+            },
+            {
+                productId: salad3.id,
+                price: 459,
+                size: 400,
+            },
+            {
+                productId: salad3.id,
+                price: 559,
+                size: 600,
+            },
+            {
+                productId: salad3.id,
+                price: 659,
+                size: 1000,
             },
 
             //остальные продукты
