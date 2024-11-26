@@ -11,3 +11,5 @@ export {SearchInput} from './search-input';
 export {SaladImage} from './salad-image';
 export {ChooseProductModal} from './choose-product-modal';
 export {ChooseProductForm} from './choose-product-form';
+export {CartButton} from './cart-button';
+export {CartDrawer} from './cart-drawer';

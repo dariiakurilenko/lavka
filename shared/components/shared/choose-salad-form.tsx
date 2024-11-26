@@ -18,7 +18,8 @@ interface Props {
     name: string;
     ingredients: Ingredient[];
     items: ProductItem[];
-    onClickAddCard?: VoidFunction;
+    onSubmit: (itemId: number, ingredients: number[]) => void;
+    loading?: boolean;
 }
 
 export const ChooseSaladForm: React.FC<Props> = ({ 
@@ -26,11 +27,18 @@ export const ChooseSaladForm: React.FC<Props> = ({
     items,
     imageUrl,
     ingredients,
-    onClickAddCard,
-    className 
+    onSubmit,
+    className,
+    loading,
 }) => {
+
+    /**
+     * Форма выбора салата
+     */
     const [size, setSize] = React.useState<SaladSize>(200);
     const [selectedIngredients, {toggle: addIngredients}] = useSet(new Set<number>([]));
+
+    const currentItemId = items.find((item) => item.size === size)?.id
     
     const totalPrice = calcSaladPrice(
         size,
@@ -38,6 +46,14 @@ export const ChooseSaladForm: React.FC<Props> = ({
         ingredients,
         selectedIngredients,
     );
+
+    const handleClickAdd = () => {
+        if (currentItemId){
+            console.log("Добавление в корзину:", currentItemId, Array.from(selectedIngredients));
+            onSubmit(currentItemId, Array.from(selectedIngredients));
+        }
+        
+    };
 
 
     const textDetails = `${size} грамм самого вкусного в мире салата`;
@@ -69,7 +85,9 @@ export const ChooseSaladForm: React.FC<Props> = ({
                     }
                 </div>
                 </div>
-                <Button
+                <Button 
+                    loading={loading}
+                    onClick={handleClickAdd}
                     className='h-[55px] px-10 my-10 text-base rounded-[18px] w-full'>
                     Добавить в корзину за {totalPrice} руб
                 </Button>
