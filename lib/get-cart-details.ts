@@ -15,6 +15,7 @@ export type CartStateItem = {
     imageUrl: string;
     saladSize: number | null;
     price: number;
+    disabled?: boolean;
     ingredients: Array<{name: string; price: number}>;
 };
 
@@ -25,6 +26,7 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
         name: item.productItem.product.name,
         imageUrl:  item.productItem.product.imageUrl,
         price: calcCartItemTotalPrice(item),
+        disabled: false,
         saladSize: item.productItem.size,
         ingredients: item.ingredients.map((ingredient) => ({
             name: ingredient.name,
