@@ -22,23 +22,24 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
     const isSaladForm = Boolean(firstItem.size);
     const {addCartItem, loading} = useCartStore();
 
-    const onAddProduct = () => {
-        addCartItem({
-            productItemId: firstItem.id,
-        });
-    };
-    const onAddSalad = async (productItemId: number, ingredients:number[]) => {
-        try{
+
+
+    const onSubmit = async (productItemId?: number, ingredients?: number[]) => {
+        try {
+            const itemId = productItemId ?? firstItem.id;
+
             await addCartItem({
-                productItemId,
-                ingredients
+                productItemId: itemId,
+                ingredients,
             });
-            toast.success('Салат добавлен в корзину');
-        }catch(e) {
-            toast.error('Не удалось добавить салат в корзину');
-            console.error(e)
+
+            toast.success(`Успешно добавили ${product.name} в корзину`);
+            router.back();
+        }   catch (err) {
+        toast.error(`Не удалось добавить ${product.name} в корзину`);
+        console.log(err)
         }
-    };
+    }
 
     
     
@@ -47,8 +48,8 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
             <DialogContent className={cn("p-0 w-[1060px] max-w-[1060px] min-h-[600px] bg-white overflow-hidden", className)}>
                 {
                     isSaladForm ? (
-                        <ChooseSaladForm imageUrl={product.imageUrl} name={product.name} ingredients={product.ingredients} items={product.items} onSubmit={onAddSalad} loading={loading}/>
-                    ) : <ChooseProductForm imageUrl={product.imageUrl} name={product.name} onSubmit={onAddProduct} price={firstItem.price} loading={loading}/>
+                        <ChooseSaladForm imageUrl={product.imageUrl} name={product.name} ingredients={product.ingredients} items={product.items} onSubmit={onSubmit} loading={loading}/>
+                    ) : <ChooseProductForm imageUrl={product.imageUrl} name={product.name} onSubmit={onSubmit} price={firstItem.price} loading={loading}/>
                 }
             </DialogContent>
         </Dialog>

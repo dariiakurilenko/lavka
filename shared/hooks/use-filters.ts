@@ -57,12 +57,15 @@ export const useFilters = (): ReturnProps =>{
         ingredients: Array.from(selectedIngredients),
     }
 
-    return {
+    return React.useMemo(
+        () => ({
         sizes,
         selectedIngredients,
         prices,
         setPrices: updatePrice,
         setSizes: toggleSizes,
         setSelectedIngredients: toggleIngredients,
-    }
+    }),
+    [sizes, selectedIngredients, prices]
+);
 }

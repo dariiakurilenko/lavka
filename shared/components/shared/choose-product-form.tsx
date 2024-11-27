@@ -41,7 +41,7 @@ export const ChooseProductForm: React.FC<Props> = ({
                 <p className="text-gray-400">{textDetails}</p>
                 <Button 
                     loading={loading}
-                    onClick={onSubmit}
+                    onClick={() => onSubmit?.()}
                     className='h-[55px] px-10 my-10 text-base rounded-[18px] w-full'>
                     Добавить в корзину за {price} руб
                 </Button>
