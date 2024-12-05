@@ -14,20 +14,15 @@ import { Button } from "../ui";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { CartDrawerItem } from "./cart-drawer-item";
-import { getCartItemDetails } from "@/lib";
-import { useCartStore } from "@/shared/store/cart";
+import { getCartItemDetails, useCart } from "@/lib";
 import { Title } from "./title";
 import { cn } from "@/lib/utils";
 
-interface Props {
-    className?: string;
-}
+
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
+    const [redirecting, setRedirecting] = React.useState(false);
     
-    const {totalAmount, fetchCartItems, items, updateItemQuantity, removeCartItem} = useCartStore();
-    React.useEffect(() => {
-        fetchCartItems();
-    }, []);
+   const {totalAmount, items, updateItemQuantity, removeCartItem} = useCart();
 
     const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
         const newQuantity = type === 'plus'? quantity + 1: quantity - 1;
@@ -42,7 +37,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
             {totalAmount > 0 && (
                     <SheetHeader>
                     <SheetTitle>
-                        В корзине <span className="font-bold">{items.length} товар/а</span>
+                        В корзине <span className="font-bold">{items.length} шт. вкусной еды</span>
                     </SheetTitle>
                 </SheetHeader>
                 )}
@@ -100,8 +95,10 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                            {totalAmount} руб
                        </span>
                    </div>
-                   <Link href="/cart">
+                   <Link href="/checkout">
                        <Button
+                            onClick={() => setRedirecting(true)}
+                           loading={redirecting}
                            type='submit'
                            className="w-full h-12 text-base">
                            Оформить заказ
