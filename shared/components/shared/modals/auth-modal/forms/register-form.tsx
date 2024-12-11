@@ -4,6 +4,7 @@ import { formRegisterSchema, TFormRegisterValues } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, FormInput, Title } from "@/shared/components";
 import toast from "react-hot-toast";
+import { registerUser } from "@/app/actions";
 
 
 interface Props {
