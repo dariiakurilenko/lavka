@@ -1,10 +1,9 @@
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { formLoginSchema, formRegisterSchema, TFormLoginValues, TFormRegisterValues } from "./schema";
+import { formRegisterSchema, TFormRegisterValues } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, FormInput, Title } from "@/shared/components";
 import toast from "react-hot-toast";
-import { signIn } from "next-auth/react";
 
 
 interface Props {
