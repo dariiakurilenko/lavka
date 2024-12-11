@@ -1,13 +1,15 @@
 import React from "react";
 import { WhiteBlock } from "../white-block";
-import { Input } from "../../ui";
+
 import { FormInput } from "../form-components";
+
 
 interface Props {
     className?: string;
 }
 
 export const CheckoutPersonalForm: React.FC<Props> = ({ className }) => {
+    
     return (
         <WhiteBlock title='2. Персональная информация' className={className}>
                     <div className="grid grid-cols-2 gap-5">

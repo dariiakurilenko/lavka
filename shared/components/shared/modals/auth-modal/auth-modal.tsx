@@ -45,19 +45,7 @@ export const AuthModal: React.FC<Props> = ({ open, onClose}) => {
                         Github
                     </Button>
 
-                    <Button
-                        variant='secondary'
-                        onClick={() =>
-                            signIn('mailru', {
-                                callbackUrl: '/',
-                                redirect: true,
-                            })
-                        }
-                        type='button'
-                        className="gap-2 h-12 p-2 flex-1">
-                            <img className="w-6 h-6" src="https://rskrf.ru/upload/iblock/ebb/zim2ts876a4ithikdg9jf0vdp1qktgtm.png" />
-                        Mail.ru
-                    </Button>
+                    
                 </div>
 
                 <Button variant='outline' onClick={onSwitchType} type='button' className="h-12">
