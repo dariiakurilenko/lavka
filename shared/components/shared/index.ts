@@ -25,5 +25,6 @@ export {ClearButton} from './clear-button';
 export {ProfileButton} from './profile-button';
 export {AuthModal} from './modals/auth-modal/auth-modal';
 export {InfoBlock} from './info-block';
+export {Stories} from './stories';
 export * from './form-components';
 export * from './checkout';
