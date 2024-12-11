@@ -5,6 +5,7 @@ import { getUserSession } from "@/lib/get-user-session";
 import { prisma } from "@/prisma/prisma-client";
 import { CheckoutFormValues } from "@/shared/components/shared/checkout/checkout-form-schema";
 import { PayOrderTemplate } from "@/shared/components/shared/email-templates/pay-order";
+import { VerificationUserTemplate } from "@/shared/components/shared/email-templates/verification-user";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { hashSync } from "bcrypt";
 import { cookies } from "next/headers";
@@ -105,7 +106,7 @@ export async function createOrder(data: CheckoutFormValues){
         const paymentUrl = paymentData.confirmation.confirmation_url
 
 
-        await sendEmail(data.email, 'Lavka | Оплатите заказ №' + order.id, PayOrderTemplate({
+        await sendEmail(data.email, 'Lavka | 📝Оплатите заказ №' + order.id, PayOrderTemplate({
             orderId: order.id,
             totalAmount: order.totalAmount,
             paymentUrl,
@@ -177,7 +178,18 @@ export async function registerUser(body: Prisma.UserCreateInput){
         });
 
 
-        
+        const code = Math.floor(100000 + Math.random() * 900000).toString();
+
+        await prisma.verificationCode.create({
+            data: {
+                code,
+                userId: createdUser.id,
+            }
+        });
+
+        await sendEmail(createdUser.email, 'Lavka | 📝Подтверждение регистрации' , VerificationUserTemplate({
+            code
+        }));
     } catch(err){
         console.error('Error [CREATE_USER]', err);
         throw err;
