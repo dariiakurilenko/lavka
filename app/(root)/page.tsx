@@ -3,9 +3,13 @@ import { ProductsGroupList } from "@/shared/components/shared/products-group-lis
 import { Suspense } from "react";
 import { findSalads, GetSearchParams } from "@/lib/find-salads";
 
+interface HomeProps {
+  searchParams: GetSearchParams; 
+}
 
 
-export default async function Home({searchParams} : {searchParams: GetSearchParams}) {
+
+export default async function Home({ searchParams }: HomeProps) {
   const categories = await findSalads(searchParams);
   return (
     <>
