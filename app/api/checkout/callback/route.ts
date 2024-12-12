@@ -15,6 +15,8 @@ export async function POST(req: NextRequest){
             }
         });
 
+        console.log(order);
+
         if(!order){
             return NextResponse.json({error: 'Order not found'})
         }
