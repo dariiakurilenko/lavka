@@ -1,6 +1,5 @@
 import { Container, Filters, Title, TopBar, Stories } from "@/shared/components/shared";
 import { ProductsGroupList } from "@/shared/components/shared/products-group-list";
-import { prisma } from "@/prisma/prisma-client";
 import { Suspense } from "react";
 import { findSalads, GetSearchParams } from "@/lib/find-salads";
 

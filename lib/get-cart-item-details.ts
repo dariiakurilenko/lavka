@@ -1,4 +1,4 @@
-import { Ingredient } from "@prisma/client";
+
 import { CartStateItem } from "./get-cart-details";
 
 export const getCartItemDetails = (

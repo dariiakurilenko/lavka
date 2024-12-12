@@ -1,4 +1,4 @@
-import { PayOrderTemplate } from '@/shared/components/shared/email-templates/pay-order';
+
 import { ReactNode } from 'react';
 import { Resend } from 'resend';
 

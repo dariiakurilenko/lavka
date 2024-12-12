@@ -1,11 +1,10 @@
 'use client'
 import { useCart } from "@/lib";
-import { CheckoutSidebar, Container, Title, WhiteBlock } from "@/shared/components/shared";
+import { CheckoutSidebar, Container, Title } from "@/shared/components/shared";
 import {FormProvider, useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod'
 import { CheckoutAddressForm, CheckoutCart, CheckoutPersonalForm } from "@/shared/components/shared/checkout";
 import { checkoutFormSchema, CheckoutFormValues } from "@/shared/components/shared/checkout/checkout-form-schema";
-import { cn } from "@/lib/utils";
 import { createOrder } from "@/app/actions";
 import toast from "react-hot-toast";
 import React from "react";
@@ -62,9 +61,7 @@ export default function CheckoutPage(){
         }catch (err){
             console.log(err);
             setSubmitting(false);
-            toast.error('Не удалось создать заказ'), {
-                icon: '❌',
-            }
+            toast.error('❌ Не удалось создать заказ')
         }
     }
     const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {

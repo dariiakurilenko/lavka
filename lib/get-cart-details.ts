@@ -1,6 +1,6 @@
 
 import { CartDTO } from "@/shared/services/dto/cart.dto";
-import { Cart } from "@prisma/client";
+
 import { calcCartItemTotalPrice } from "./calc-cart-item-total-price";
 
 interface ReturnProps {
